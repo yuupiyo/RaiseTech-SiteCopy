@@ -1,0 +1,494 @@
+// base
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  line-height: 1.7;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  font-size: 1.6rem;
+  color: #121212;
+  -webkit-text-size-adjust: 100%;
+}
+
+// common
+a {
+  text-decoration: none;
+  background-color: transparent;
+  color: #131D34;
+  display: block;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+  border-style: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+// headerの部分
+.header {
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1100;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  // headerの左部分
+  &_left {
+    margin-left: 21px;
+    width: 160px;
+    @media screen and (max-width: 1200px) {
+      margin: 10px;
+    }
+
+    // ロゴ部分
+    & p {
+      margin-bottom: 0;
+      & a {
+        display: flex;
+        line-height: 1.3;
+        font-weight: 900;
+        height: 70px;
+        align-content: center;
+        align-items: center;
+        transition: all 0.3s;
+        @media screen and (max-width: 1200px) {
+          height: 30px;
+        }
+
+        // ロゴ横のサブタイトル部分
+        & span {
+          margin-left: 16px;
+          white-space: nowrap;
+          font-size: 14px;
+          @media screen and (max-width: 1280px) {
+            display: none;
+          }
+        }
+      }
+
+      // ロゴ画像の部分
+      & img {
+        width: auto;
+        height: 33px;
+        @media screen and (max-width: 1200px) {
+          height: 30px;
+        }
+      }
+
+      // 「稼げる」の部分
+      & strong {
+        font-size: 18px;
+        font-weight: bolder;
+      }
+    }
+  }
+
+  // headerの右部分
+  &_right {
+    .nav {
+      font-weight: 700;
+    }
+
+    // ハンバーガーボタン部分
+    .nav_btn {
+      display: none;
+      margin-bottom: 0;
+      @media screen and(max-width: 1200px) {
+        & {
+          display: block;
+          position: relative;
+          width: 50px;
+          height: 50px;
+        }
+        
+        // ハンバーガーボタンの線の共通部分
+        & span {
+          position: absolute;
+          left: 14px;
+          content: "";
+          width: 23px;
+          height: 2px;
+          background-color: #2498B3;
+          transition: all 0.2s;
+
+          // ハンバーガーボタン一番上の線
+          &:nth-child(1) {
+            top: 15px;
+          }
+
+          // ハンバーガーボタン真ん中の線
+          &:nth-child(2) {
+            top: 24px;
+          }
+
+          // ハンバーガーボタン一番下の線
+          &:nth-child(3) {
+            bottom: 15px;
+          }
+        }
+
+        // ハンバーガーボタンのバツ
+          &.active {
+            background-color: #2498B3;
+  
+            &.active span:nth-child(1) {
+              top: 24px;
+              transform: rotate(-45deg);
+              background-color: #fff;
+            }
+  
+            &.active span:nth-child(3) {
+              bottom: 24px;
+              transform: rotate(-135deg);
+              background-color: #fff;
+            }
+          }
+      }
+    }
+  
+    // ナビメニューの部分
+    .nav_menu {
+      &.close {
+        display: none;
+      }
+      &.open {
+        display: block;
+      }
+      
+      @media screen and (max-width: 1200px) {
+        // display: none;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        background-color: #fff;
+      }
+      
+      //メインメニュー部分
+      .menu {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        @media screen and (max-width: 1200px) {
+          flex-direction: column;
+          
+          .contact a {
+            display: none;
+          }
+        }
+        & li {
+          position: relative;
+          white-space: nowrap;
+          & a {
+            display: flex;
+            align-items: center;
+            height: 70px;
+            padding: 0 15px;
+            transition: all 0.3s;
+            @media screen and (max-width: 1260px) {
+              padding: 0 10px;
+            }
+            @media screen and (max-width: 1200px) {
+              height: auto;
+              padding: 10px;
+            }
+          }
+        }
+      }
+
+      .menu_item {
+        & a:hover {
+          background-color: #D4F1F8;
+          @media screen and (max-width: 1200px) {
+            background-color: #f3fafb;
+          }
+        }
+
+        // リストの右にある”＋”の部分
+        @media screen and (max-width: 1200px) {
+          &-has-children {
+            position: relative;
+            top: 0;
+          }
+          &-has-children::before {
+            display: block;
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 13px;
+            width: 24px;
+            height: 2px;
+            margin-top: -1px;
+            background-color: #121212;
+            z-index: 9;
+          }
+          &-has-children::after {
+            display: block;
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 24px;
+            width: 2px;
+            height: 24px;
+            margin-top: -12px;
+            background-color: #121212;
+          }
+          // リストの右にある”-”の部分
+          &-has-children.open::after {
+            display: block;
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px;
+            height: auto;
+            margin-top: 0;
+            background-color: #f7f7f7;
+          }
+        }
+      } 
+
+      // 受講申し込みの部分
+      .contact a {
+        color: #fff;
+        background-color: #2498b3;
+      }
+      
+      // サブメニュー部分
+      .submenu {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        z-index: 1000;
+        @media screen and (max-width: 1200px) {
+          position: static;
+        }
+
+        & li {
+          font-weight: normal;
+          background-color: #E9F8FB;
+          @media screen and (max-width: 1200px) {
+            background-color: #fff;
+          }
+
+          & a {
+            position: relative;
+            padding: 15px 60px 15px 15px;
+            height: auto;
+            @media screen and (max-width: 1200px) {
+              padding: 10px 10px 10px 25px;
+            }
+
+            &:hover {
+              color: #2498b3;
+              background-color: #fff;
+              @media screen and (max-width: 1200px) {
+                color: #121212;
+                background-color: #f3fafb;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// メイン部分
+.main {
+  padding-top: 70px;
+  @media screen and (max-width: 1200px) {
+    padding-top: 50px;
+  }
+
+  // TOPページ部分
+  .topHead {
+    height: 650px;
+    position: relative;
+    background: url(../images/bg-hero3.png) no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    @media screen and (max-width: 767px) {
+      height: 320px;
+      background-position: center -25px;
+      // padding-bottom: 330px;
+    }
+
+    &_layer {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    // テックンの画像部分
+    &_layer1 {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 80px;
+      background: url(../images/bg-hero1.png) no-repeat center center;
+      z-index: 200;
+      @media screen and (max-width: 767px) {
+        background-size: cover;
+        align-items: flex-end;
+        background-position: center -30px;
+      }
+    }
+
+    // テックンの画像の下部分
+    &_layer2 {
+      background: url(../images/bg-hero2.png) no-repeat center center;
+      z-index: 100;
+      @media screen and (max-width: 767px) {
+        background-size: cover;
+        background-position: center -25px;
+      }
+    }
+
+    // トップページのタイトル部分
+    &_body {
+      max-width: 530px;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 43px 40px 19px;
+      text-align: center;
+      @media screen and (max-width: 767px) {
+        width: 100%;
+        max-width: 100%;
+        padding: 9px 0 13px;
+        border-radius: 0;
+        background-color: #fff;
+      }
+    }
+
+    // トップページのRaiseTechロゴ部分
+    &_title img {
+      width: 280px;
+      height: auto;
+      @media screen and (max-width: 767px) {
+        display: none;
+      }
+    }
+
+    &_text {
+      color: #121212;
+      font-size: 16px;
+      font-weight: 700;
+      margin: 20.8px 0 8px;
+      @media screen and (max-width: 767px) {
+        font-size: 13px;
+        margin: 6.5px 0;
+      }
+    }
+
+    // "マンガでわかるRaiseTech"の部分
+    &_btn {
+      display: inline-block;
+      @media screen and (max-width: 767px) {
+        margin: 6.5px 0;
+      }
+      & a {
+        display: block;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1;
+        background: #2498b3;
+        padding: 24px 37px;
+        margin: 20.8px 0 8px;
+        border: 1px solid #2498b3;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s;
+        @media screen and (max-width: 767px) {
+          font-size: 16px;
+          padding: 12px 18px;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  // トップページ下の黒い部分
+  .sec_black {
+    background-color: #000;
+    padding: 64px 0;
+  }
+
+  // 3つのアイコン部分
+  .recommend {
+    display: flex;
+    justify-content: center;
+    margin-top: -263px;
+    position: relative;
+    z-index: 1000;
+    @media screen and (max-width: 1078px) {
+      margin: -263px 10px 0;
+    }
+    @media screen and (max-width: 767px) {
+      margin-top: 0;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &_entry {
+      width: 229px;
+      margin: 0 50px;
+      @media screen and (max-width: 1078px) {
+        width: 29.33%;
+        margin: 0 2%;
+      }
+      @media screen and (max-width: 767px) {
+        margin-bottom: 40px;
+        width: auto;
+      }
+    }
+    &_icon {
+      width: 230px;
+      height: 230px;
+      background-color: #fff;
+      border: 6px solid #000;
+      border-radius: 50%;
+      font-size: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+    }
+    &_title {
+      text-align: center;
+      color: #fff;
+      font-size: 24px;
+      font-weight: 700;
+      margin: 4.8px 0 0;
+    }
+    &_text {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.7;
+      margin: 8px 0 0;
+    }
+  }
+}
+
